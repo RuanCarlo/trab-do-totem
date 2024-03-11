@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Totem de Posto de Saúde</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #333; /* Cor de fundo escura */
+    color: #fff; /* Cor do texto clara */
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    max-width: 600px;
+    margin: 50px auto;
+    text-align: center;
+  }
+  h1, h2 {
+    margin-bottom: 20px;
+  }
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 10px;
+    cursor: pointer;
+    background-color: #007bff; /* Cor de fundo dos botões */
+    color: #fff; /* Cor do texto dos botões */
+    border: none;
+    border-radius: 5px;
+  }
+  button:hover {
+    background-color: #0056b3; /* Cor de fundo dos botões ao passar o mouse */
+  }
+  #senha-emitida {
+    margin-top: 50px;
+  }
+  #senha {
+    font-size: 24px;
+    color: #007bff; /* Cor da senha */
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+ 
+  <div id="tela-inicial">
+    <h1>Selecione uma opção de atendimento :</h1>
+    <button onclick="selecionarTipoAtendimento('normal')">Normal</button>
+    <button onclick="selecionarTipoAtendimento('preferencial')">Preferencial</button>
+  </div>
+
+  <!-- opções de senha  -->
+  <div id="selecao-servico" style="display: none;">
+    <h2>Selecione o serviço desejado:</h2>
+    <button onclick="emitirSenha('Pediatria')">Pediatria</button>
+    <button onclick="emitirSenha('Ortopedia')">Ortopedia</button>
+    <button onclick="emitirSenha('Clinica Geral')">Clinica Geral</button>
+    <button onclick="emitirSenha('Ginecologia')">Ginecologia</button>
+    <button onclick="emitirSenha('Psiquiatria')">Psiquiatria</button>
+    <button onclick="emitirSenha('Odontologia')">Odontologia</button>
+    <button onclick="emitirSenha('Farmácia')">Farmácia</button>
+    <button onclick="emitirSenha('Regulação')">Regulação</button>
+    <button onclick="emitirSenha('Assistência Social')">Assistência Social</button>
+    <button onclick="emitirSenha('Insumos')">Insumos</button>
+    <button onclick="emitirSenha('Vacinas')">Vacinas</button>
+  </div>
+
+
+  <div id="senha-emitida" style="display: none;">
+    <h2>Concluído!</h2>
+    <p>Sua senha é: <span id="senha"></span></p>
+  </div>
+</div>
+
+<script>
+function selecionarTipoAtendimento(tipo) {
+  document.getElementById("tela-inicial").style.display = "none";
+  document.getElementById("selecao-servico").style.display = "block";
+  // lógica para tratar o tipo de atendimento selecionado
+}
+
+function emitirSenha(servico) {
+  // Gerar uma senha diferente dependendo do tipo de atendimento
+  var tipoAtendimento = document.getElementById("tela-inicial").style.display === "none" ? "preferencial" : "normal";
+  var senhaPrefixo = tipoAtendimento === "preferencial" ? "P" : "N";
+  var senha = senhaPrefixo + Math.floor(Math.random() * 1000); // Exemplo de senha gerada
+  
+  document.getElementById("selecao-servico").style.display = "none";
+  document.getElementById("senha-emitida").style.display = "block";
+  document.getElementById("senha").innerText = senha;
+}
+</script>
+</body>
+</html>
